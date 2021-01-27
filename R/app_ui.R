@@ -3,14 +3,22 @@
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import shinymaterial
+#' @importFrom shinymaterial material_page
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    fluidPage(
-      h1("appsilon")
+    material_page(
+      title = "",
+      div(
+        class = "wrapper",
+        span(class = "title", "Enterprise Shiny Dashboard"),
+        div(class = "break"),
+        mod_info_cards_ui("top")
+      )
     )
   )
 }
@@ -23,7 +31,7 @@ app_ui <- function(request) {
 #' @import shiny
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
-golem_add_external_resources <- function(){
+golem_add_external_resources <- function() {
   
   add_resource_path(
     'www', app_sys('app/www')

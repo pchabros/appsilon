@@ -1,0 +1,58 @@
+:root {
+  --card-bottom-height: 50px;
+}
+
+.info-card {
+  padding: 5px 20px 0 40px !important;
+}
+
+.card-value {
+  font-size: 60px;
+  font-weight: 300;
+}
+
+.card-name, .card-gain {
+  font-size: 25px;
+}
+
+.float-right > span {
+  float: right;
+}
+
+.dropdown-button {
+  padding: 0 !important;
+  width: 90%;
+}
+
+.dropdown-button > .btn {
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  background: #e8e8e8;
+  color: black;
+}
+
+.dropdown-button > .btn:hover {
+  background: #ded9d9;
+}
+
+.dropdown-button > .btn:active, .dropdown-button > .btn:focus {
+  background: #d4cfcf;
+}
+
+.ico {
+  width: 10%;
+  text-align: center;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.ico > i {
+  transform: translateY(calc(var(--card-bottom-height) / 3)) scale(1.5);
+  color: white;
+}
+
+.card-bottom {
+  height: var(--card-bottom-height);
+  margin: 0 -20px 0 -40px !important;
+  display: flex;
+}
