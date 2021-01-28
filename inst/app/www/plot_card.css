@@ -1,0 +1,29 @@
+.plot-card {
+  transition: width 0.5s, height 1s;
+}
+
+.card-panel {
+  margin: 0 -7px 0 10px;
+}
+
+.panel-title {
+  font-size: 35px;
+  margin-top: 12px;
+  margin-left: -7px;
+}
+
+.card-tools > .btn:hover,
+.card-tools > .btn:focus,
+.card-tools > .btn:active {
+  background: transparent;
+}
+
+.card-tools > .btn:hover > img,
+.card-tools > .btn:focus > img {
+  transform: scale(1);
+}
+
+.card-tools > .btn > img {
+  transform: scale(0.8);
+  transition: all 0.5s;
+}

@@ -3,21 +3,21 @@
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
 #' @import shiny
-#' @import shinymaterial
-#' @importFrom shinymaterial material_page
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    material_page(
+    fluidPage(
       title = "",
       div(
         class = "wrapper",
         span(class = "title", "Enterprise Shiny Dashboard"),
-        div(class = "break"),
-        mod_info_cards_ui("top")
+        div(style = "height: 50px;"),
+        mod_info_cards_ui("top"),
+        div(style = "height: 30px;"),
+        fluidRow(mod_plot_card_ui("production_plot"))
       )
     )
   )
@@ -35,6 +35,10 @@ golem_add_external_resources <- function() {
   
   add_resource_path(
     'www', app_sys('app/www')
+  )
+  
+  add_resource_path(
+    'img', app_sys('app/img')
   )
  
   tags$head(

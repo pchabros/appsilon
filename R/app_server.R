@@ -15,5 +15,10 @@ app_server <- function(input, output, session) {
   )
   
   callModule(mod_info_cards_server, "top", .data = cards_data)
-  
+  callModule(
+    mod_plot_card_server, "production_plot",
+    title = "PRODUCTION",
+    .data = data.frame(),
+    plot_type = "bar_line"
+  )
 }
