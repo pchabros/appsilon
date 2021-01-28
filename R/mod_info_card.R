@@ -1,4 +1,4 @@
-#' card UI Function
+#' info_card UI Function
 #'
 #' @description A shiny Module.
 #'
@@ -10,15 +10,15 @@
 #' @importFrom shinymaterial material_card material_row material_column
 #' @importFrom stringr str_c str_sub
 #' @importFrom dplyr if_else
-mod_card_ui <- function(id) {
+mod_info_card_ui <- function(id) {
   ns <- NS(id)
   uiOutput(ns("card"))
 }
 
-#' card Server Function
+#' info_card Server Function
 #'
 #' @noRd 
-mod_card_server <- function(input, output, session, value, name, gain, ico, color) {
+mod_info_card_server <- function(input, output, session, value, name, gain, ico, color) {
   ns <- session$ns
   
   gain_color <- function(.gain) str_c("color: ", if_else(

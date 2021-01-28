@@ -26,7 +26,7 @@ mod_info_cards_server <- function(input, output, session, .data) {
   output$info_cards <- renderUI({
     map(1:nrow(.data), ~material_column(
       width = floor(12 / nrow(.data)), class = "inline",
-      mod_card_ui(ns(str_c("card", .x)))
+      mod_info_card_ui(ns(str_c("info_card", .x)))
     ))
   })
   
@@ -34,7 +34,7 @@ mod_info_cards_server <- function(input, output, session, .data) {
     .data %>%
       slice(i) %$%
       callModule(
-        mod_card_server, str_c("card", i),
+        mod_info_card_server, str_c("info_card", i),
         value = value,
         name = name,
         gain = gain,
