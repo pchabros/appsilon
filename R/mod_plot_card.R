@@ -7,12 +7,13 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS
-#' @importFrom stringr str_remove
+#' @importFrom stringr str_remove str_c
+#' @importFrom jsonlite toJSON
 mod_plot_card_ui <- function(id) {
   ns <- NS(id)
   uiOutput(ns("plot_card"))
 }
-    
+
 #' plot_card Server Function
 #'
 #' @noRd 
@@ -20,10 +21,6 @@ mod_plot_card_server <- function(input, output, session, title, .data, plot_type
 
   ns <- session$ns
   id <- ns("") %>% str_remove("-$")
-  
-  output$histogram <- renderPlot({
-    hist(mtcars$mpg)
-  })
   
   output$plot_card <- renderUI({
     column(
@@ -43,10 +40,16 @@ mod_plot_card_server <- function(input, output, session, title, .data, plot_type
       ),
       fluidRow(
         class = "card-body",
-        plotOutput(ns("histogram"))
+        HTML(str_c('<svg id="', id, '-plot"></svg>'))
       )
     )
   })
+  
+  session$onFlushed(function() {
+    session$sendCustomMessage(plot_type, list(
+      id = str_c(id, "-plot"), data = toJSON(.data)
+    ))}
+  )
   
   observeEvent(input$remove, {
     session$sendCustomMessage("remove", id)

@@ -31,7 +31,7 @@
 
 .dropdown-button {
   padding: 0 !important;
-  width: 90%;
+  width: 100%;
 }
 
 .dropdown-button > .btn {
@@ -42,7 +42,7 @@
 }
 
 .ico {
-  width: 13%;
+  width: 50px;
   text-align: center;
   box-shadow: 2px 2px 8px rgb(170, 170, 170);
 }

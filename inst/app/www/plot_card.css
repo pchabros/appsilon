@@ -1,5 +1,5 @@
 .plot-card {
-  transition: width 0.5s, height 1s;
+  transition: width 0.3s, height 0.4s;
 }
 
 .card-panel {
@@ -16,6 +16,7 @@
 .card-tools > .btn:focus,
 .card-tools > .btn:active {
   background: transparent;
+  outline: none;
 }
 
 .card-tools > .btn:hover > img,

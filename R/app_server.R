@@ -3,22 +3,24 @@
 #' @param input,output,session Internal parameters for {shiny}. 
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom dplyr mutate bind_rows select
+#' @importFrom wrapr %.>%
 #' @noRd
 app_server <- function(input, output, session) {
   
-  cards_data <- data.frame(
-    value = c("$ 2 674 862", "657", "245", "12"),
-    name = c("TOTAL PROFIT", "ACTIVE USERS", "NEW ORDERS", "OPEN COMPLAINTS"),
-    gain = c("+4,5%", "+8,5%", "+3,9%", "-5,3%"),
-    ico = c("database", "user", "box-open", "ellipsis-h"),
-    color = c("#70a1d7", "#a1de93", "#f7f48b", "#f47c7c")
-  )
+  .data <- generate_data()
   
-  callModule(mod_info_cards_server, "top", .data = cards_data)
+  callModule(mod_info_cards_server, "top", .data = .data$cards)
   callModule(
     mod_plot_card_server, "production_plot",
     title = "PRODUCTION",
-    .data = data.frame(),
-    plot_type = "bar_line"
+    .data = .data$line_bar_plot,
+    plot_type = "line_bar_plot"
+  )
+  callModule(
+    mod_map_card_server, "world_map",
+    title = "SALES REVENUE BY COUNTRY",
+    .data = .data$map,
+    map_type = "world_map"
   )
 }

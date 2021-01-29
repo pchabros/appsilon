@@ -1,0 +1,11 @@
+.polygon {
+  opacity: 0.8;
+  stroke: white;
+  stroke-width: 0.5px;
+  transition: stroke 0.5s;
+}
+
+.polygon:hover {
+  stroke: darkseagreen;
+  stroke-width: 1px;
+}
