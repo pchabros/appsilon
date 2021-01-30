@@ -36,6 +36,10 @@ path .domain {
   opacity: 0.9;
 }
 
+.lab {
+  dominant-baseline: middle;
+}
+
 .line {
   stroke: grey;
   opacity: 0.5;

@@ -3,6 +3,8 @@ $(document).ready(function() {
     
     let { id, data } = params;
     
+    debugger;
+    
     if ($(`#${id} > .plot`).length === 0) {
       // settings
       const margin = {
@@ -11,8 +13,11 @@ $(document).ready(function() {
         bottom: 40,
         left: 30,
       };
-      const svg = d3.select(`#${id}`);
-      
+      const svg = d3
+        .select(`#${id}`)
+        .style("display", "block")
+        .style("margin", "auto");
+        
       const plot = svg
         .append("g")
         .attr("class", "plot")

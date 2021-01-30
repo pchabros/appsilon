@@ -1,11 +1,21 @@
+.map-title {
+  font-size: 35px;
+  margin: 12px 0 10px 8px;
+}
+
+.map-svg {
+  display: block;
+  margin: auto;
+}
+
 .polygon {
   opacity: 0.8;
   stroke: white;
   stroke-width: 0.5px;
-  transition: stroke 0.5s;
 }
 
 .polygon:hover {
-  stroke: darkseagreen;
-  stroke-width: 1px;
+  stroke: lightgrey;
+  stroke-width: 0.5px;
+  filter: url("#map-shadow");
 }

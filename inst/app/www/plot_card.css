@@ -1,5 +1,6 @@
 .plot-card {
-  transition: width 0.3s, height 0.4s;
+  transition: all 0.3s;
+  margin: 0 -16px 15px -13px;
 }
 
 .card-panel {
@@ -24,7 +25,15 @@
   transform: scale(1);
 }
 
+.card-tools > .btn {
+  background-color: transparent;
+}
+
 .card-tools > .btn > img {
   transform: scale(0.8);
   transition: all 0.5s;
+}
+
+#plots-col {
+  transition: all 0.3s;
 }

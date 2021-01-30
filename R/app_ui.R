@@ -19,8 +19,13 @@ app_ui <- function(request) {
         div(style = "height: 30px;"),
         fluidRow(
           id = "plots-area",
-          mod_plot_card_ui("production_plot"),
-          mod_map_card_ui("world_map")
+          column(
+            id = "plots-col",
+            width = 6,
+            column(width = 12, mod_plot_card_ui("production_plot")),
+            column(width = 12, mod_plot_card_ui("summary"))
+          ),
+          column(width = 6, mod_map_card_ui("world_map"))
         )
       )
     )
