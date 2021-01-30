@@ -16,16 +16,16 @@ app_ui <- function(request) {
         span(class = "title", "Enterprise Shiny Dashboard"),
         div(style = "height: 50px;"),
         mod_info_cards_ui("top"),
-        div(style = "height: 30px;"),
+        div(style = "height: 10px;"),
         fluidRow(
           id = "plots-area",
-          column(
+          div(
             id = "plots-col",
-            width = 6,
-            column(width = 12, mod_plot_card_ui("production_plot")),
-            column(width = 12, mod_plot_card_ui("summary"))
+            class = "col-lg-6",
+            fluidRow(column(width = 12, mod_plot_card_ui("production_plot"))),
+            fluidRow(column(width = 12, mod_plot_card_ui("summary")))
           ),
-          column(width = 6, mod_map_card_ui("world_map"))
+          div(class = "col-lg-6", mod_plot_card_ui("world_map"))
         )
       )
     )
@@ -56,8 +56,6 @@ golem_add_external_resources <- function() {
       path = app_sys('app/www'),
       app_title = 'appsilon'
     )
-    # Add here other external resources
-    # for example, you can add shinyalert::useShinyalert() 
   )
 }
 

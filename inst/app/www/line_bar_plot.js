@@ -3,14 +3,12 @@ $(document).ready(function() {
     
     let { id, data } = params;
     
-    debugger;
-    
     if ($(`#${id} > .plot`).length === 0) {
       // settings
       const margin = {
-        top: 20,
+        top: 15,
         right: 60,
-        bottom: 40,
+        bottom: 20,
         left: 30,
       };
       const svg = d3
@@ -100,7 +98,7 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
-      const height = width / 2;
+      const height = width / 2.57;
       
       parentDiv.attr("height", height);
       
@@ -222,7 +220,7 @@ $(document).ready(function() {
           }
         );
     }
-    global.render[id] = renderBarLinePlot;
+    global.render[id] = (width = null) => renderBarLinePlot(id, width);
     renderBarLinePlot(id);
   });
 });

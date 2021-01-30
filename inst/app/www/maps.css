@@ -1,11 +1,7 @@
-.map-title {
-  font-size: 35px;
-  margin: 12px 0 10px 8px;
-}
-
 .map-svg {
   display: block;
   margin: auto;
+  padding-top: 10px;
 }
 
 .polygon {

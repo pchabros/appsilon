@@ -6,9 +6,9 @@ $(document).ready(function() {
     if ($(`#${id} > .plot`).length === 0) {
       // settings
       const margin = {
-        top: 20,
+        top: 5,
         right: 20,
-        bottom: 60,
+        bottom: 0,
         left: 50,
       };
       const svg = d3
@@ -54,7 +54,7 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
-      const height = Math.min(width / 4, 300);
+      const height = Math.min(width / 7, 200);
       
       parentDiv.attr("height", height);
       
@@ -120,7 +120,7 @@ $(document).ready(function() {
           }
         );
     }
-    global.render[id] = renderBarPlot;
+    global.render[id] = (width = null) => renderBarPlot(id, width);
     renderBarPlot(id);
   });
 });

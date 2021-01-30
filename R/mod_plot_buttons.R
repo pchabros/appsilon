@@ -18,15 +18,18 @@ mod_plot_buttons_ui <- function(id) {
 #' @noRd 
 mod_plot_buttons_server <- function(input, output, session, choices, selected) {
   ns <- session$ns
- 
+  
   output$buttons <- renderUI({
     fluidRow(
-      pickerInput(
-        inputId = ns("date"),
-        label = "", 
-        choices = choices
-      )
-    )
+      class = "plot-buttons",
+      column(
+        width = 12,
+        pickerInput(
+          inputId = ns("date"),
+          label = "", 
+          choices = choices
+        )
+      ))
   })
   
   observe({ selected(input$date) })

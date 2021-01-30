@@ -37,10 +37,16 @@ generate_data <- function() {
     })
   
   map <-
-    data.frame(
-      country = c("USA", "BRA", "ESP", "GER", "SWE"),
-      value = c(10, 2, 5, 6, 8)
-    )
+    month.name %>%
+    str_to_upper() %>%
+    str_c(" 2018") %>%
+    map_df(function(.date) {
+      data.frame(country = c("USA", "BRA", "ESP", "GER", "SWE")) %>%
+        mutate(
+          value = rpois(length(country), 10),
+          date_ = .date
+        )
+    })
   
   bar_plot <-
     str_c(1:12, " MONTH") %>%
@@ -76,7 +82,7 @@ generate_data <- function() {
           )
         ) %>%
         mutate(
-          lab = str_c(sign, round(delta_pct * 100)),
+          lab = str_c(sign, round(delta_pct * 100), "%"),
           color = case_when(
             group == "value" ~ rgb(0.8, 0.8, 0.8),
             measure == "total_profit" ~ "#70a1d7",

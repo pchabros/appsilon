@@ -9,7 +9,7 @@
 #' @importFrom shiny NS
 #' @importFrom stringr str_remove str_c
 #' @importFrom jsonlite toJSON
-#' @importFrom dplyr filter %>%
+#' @importFrom dplyr filter if_else %>%
 mod_plot_card_ui <- function(id) {
   ns <- NS(id)
   uiOutput(ns("plot_card"))
@@ -18,12 +18,13 @@ mod_plot_card_ui <- function(id) {
 #' plot_card Server Function
 #'
 #' @noRd 
-mod_plot_card_server <- function(input, output, session, title, .data, plot_type) {
+mod_plot_card_server <- function(input, output, session, title, tools = TRUE, .data, plot_type) {
   
   ns <- session$ns
   id <- ns("") %>% str_remove("-$")
   
   selected <- reactiveVal()
+  
   data_filtered <- reactive({
     if (is.null(selected())) selected(.data$date_[1])
     .data %>% filter(date_ == selected())
@@ -34,14 +35,18 @@ mod_plot_card_server <- function(input, output, session, title, .data, plot_type
       class = "card plot-card", id = id,
       fluidRow(
         class = "card-panel",
-        column(width = 6, class = "panel-title", span(title)),
-        div(
-          class = "card-tools float-right",
-          map(
-            c("remove", "expand", "minimize"),
-            ~button(ns(.x), .x)
+        column(width = if_else(tools, 6, 12), class = "panel-title", span(title)),
+        if (tools) {
+          div(
+            class = "card-tools float-right",
+            map(
+              c("remove", "expand", "minimize"),
+              ~button(ns(.x), .x)
+            )
           )
-        )
+        } else {
+          div(style = "height: 10px;")
+        }
       ),
       fluidRow(
         class = "card-body",

@@ -5,23 +5,14 @@ $(document).ready(function() {
     
     if ($(`#${id} > .map`).length === 0) {
       // settings
-      const svg = d3.select(`#${id}`).attr("class", "map-svg");
+      const svg = d3
+        .select(`#${id}`)
+        .attr("class", "map-svg");
         
       const plot = svg
         .append("g")
         .attr("class", "map");
         
-      // scale
-      const cScale = (d) => {
-        const scale = d3.scaleSequential(
-          [0, d3.max(data, (d) => d.value) * 2],
-          d3.interpolateOranges
-        );
-        const country = data.find((v) => v.country === d.id);
-        if (country) return scale(country.value);
-        else return "rgb(240, 240, 240)";
-      };
-      
       // shadow
       plot
         .append("filter")
@@ -41,19 +32,16 @@ $(document).ready(function() {
         .style("opacity", 0);
       
       // collect variables
-      global[id] = { svg, plot, cScale, tooltip };
+      global[id] = { svg, plot, tooltip };
     }
     
     // variables
-    let { svg, plot, cScale, tooltip } = global[id];
+    let { svg, plot, tooltip } = global[id];
     
-    function renderWorldMap(id, width = null) {
+    function renderWorldMap(id) {
       
       const parentDiv = $(`#${id}`).parent(".card-body");
-      
-      if (!width) {
-        width = parentDiv.innerWidth() * 0.95;
-      }
+      width = parentDiv.innerWidth() * 0.96;
       const height = width * 0.8;
       
       parentDiv.attr("height", height);
@@ -62,7 +50,7 @@ $(document).ready(function() {
       
       const proj = d3
         .geoMercator()
-        .scale(150)
+        .scale(width / 5.2)
         .rotate([352, 0, 0])
         .translate([width / 2, height / 2]);
       
@@ -94,6 +82,19 @@ $(document).ready(function() {
         tooltip.transition().style("opacity", 0);
       }
       */
+      
+      // scale
+      const cScale = (d) => {
+        const scale = d3.scaleSequential(
+          [0, d3.max(data, (d) => d.value) * 2],
+          d3.interpolateOranges
+        );
+        const country = data.find((v) => v.country === d.id);
+        if (country) return scale(country.value);
+        else return "rgb(240, 240, 240)";
+      };
+      
+      // polygons
       plot
         .selectAll("path")
         .data(global[id].geography.features)
@@ -106,7 +107,9 @@ $(document).ready(function() {
               .attr("fill", cScale);
           },
           (update) => {
-            update.transition().attr("fill", cScale);
+            update.transition()
+              .attr("d", path)
+              .attr("fill", cScale);
           }
         );
     }
@@ -118,6 +121,6 @@ $(document).ready(function() {
         renderWorldMap(id);
       });
     }
-    global.render[id] = renderWorldMap;
+    global.render[id] = () => renderWorldMap(id);
   });
 });

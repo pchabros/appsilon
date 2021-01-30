@@ -1,6 +1,6 @@
 .plot-card {
   transition: all 0.3s;
-  margin: 0 -16px 15px -13px;
+  margin: 10px 0;
 }
 
 .card-panel {
@@ -36,4 +36,12 @@
 
 #plots-col {
   transition: all 0.3s;
+}
+
+.plot-buttons {
+  margin: 0 20px;
+}
+
+.dropdown-toggle:active, .dropdown-toggle:active:focus {
+  border: none !important;
 }

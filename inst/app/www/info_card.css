@@ -7,7 +7,7 @@
 }
 
 .card-value {
-  font-size: 60px;
+  font-size: 50px;
   margin-left: 5px;
 }
 
@@ -21,8 +21,7 @@
 }
 
 .card-name, .card-gain {
-  font-size: 25px;
-  white-space: nowrap;
+  font-size: 20px;
 }
 
 .float-right > span {
@@ -56,4 +55,8 @@
   height: var(--card-bottom-height);
   margin: 0 -20px 0 -40px !important;
   display: flex;
+}
+
+.pad-bot {
+  padding-bottom: 10px;
 }

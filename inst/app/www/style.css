@@ -25,20 +25,27 @@ nav {
 
 .btn {
   border-radius: 0 !important;
-  border-color: transparent;
+  border-color: transparent !important;
   transition: all 0.5s;
 }
 
 .btn:hover {
   background: rgb(245, 245, 245);
-  border-color: transparent;
+  border-color: transparent !important;
 }
 
-.btn:active, .btn:focus {
+.btn:active, .btn:focus, .btn:focus-visible {
   background: rgb(242, 242, 242);
   border-color: transparent !important;
+  outline-color: transparent !important;
 }
 
 .float-right {
   float: right;
+}
+
+div[class*="col-"] {
+  flex-grow: 1;
+  flex-shrink: 1;
+  transition: all 0.5s ease-in-out;
 }

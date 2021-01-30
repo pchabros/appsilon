@@ -27,9 +27,10 @@ app_server <- function(input, output, session) {
     plot_type = "bar_plot"
   )
   callModule(
-    mod_map_card_server, "world_map",
+    mod_plot_card_server, "world_map",
     title = "SALES REVENUE BY COUNTRY",
     .data = .data$map,
-    map_type = "world_map"
+    plot_type = "world_map",
+    tools = FALSE
   )
 }
